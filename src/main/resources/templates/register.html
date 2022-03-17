@@ -61,15 +61,15 @@
     <div class="container">
         <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to Signup page</h1>
         <hr>
+        <br>
         <h2 style="text-align: center; color: red; font-family: cursive" th:if="${isUsernamePresent}">User already
             exists against this
             username</h2>
         <h2 style="text-align: center; color: red; font-family: cursive" th:if="${isEmailPresent}">User already exists
             against this
             email</h2>
-        <h2 style="text-align: center; color: green; font-family: cursive" th:if="${success}">User is successfully
+        <h2 style="text-align: center; color: darkgreen; font-family: cursive" th:if="${success}">User is successfully
             registered</h2>
-        <hr>
         <form th:action="@{/users/register}" th:object="${user}" method="post"
               class="form">
             <div class="form-group">
