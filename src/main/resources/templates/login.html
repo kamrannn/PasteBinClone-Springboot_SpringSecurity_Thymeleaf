@@ -57,7 +57,7 @@
     <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to the Login page</h1>
     <div class="container">
         <br>
-        <p th:if="${loginError}" class="error">Wrong username or password</p>
+        <p th:if="${loginError}" class="error" style="text-align: center; color: red; font-family: cursive">Wrong username or password</p>
         <form th:action="@{/login}" method="POST" th:object="${user}">
             <label>Username:</label>
             <input type="text" placeholder="Enter Username" th:field="*{username}"
