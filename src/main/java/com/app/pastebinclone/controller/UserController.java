@@ -55,6 +55,7 @@ public class UserController {
         } else {
             userService.save(user);
             model.addAttribute("success", true);
+            model.addAttribute("user", new User());//To reset the form
         }
         return "register";
     }

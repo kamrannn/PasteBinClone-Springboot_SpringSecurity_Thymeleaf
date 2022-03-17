@@ -18,7 +18,7 @@
         font-family: cursive;
     }
 
-    input{
+    input {
         font-family: cursive;
     }
 
@@ -57,11 +57,14 @@
     <div class="container">
         <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to Signup page</h1>
         <hr>
-        <h2 style="text-align: center; color: red" th:if="${isUsernamePresent}">User already exists against this
+        <h2 style="text-align: center; color: red; font-family: cursive" th:if="${isUsernamePresent}">User already
+            exists against this
             username</h2>
-        <h2 style="text-align: center; color: red" th:if="${isEmailPresent}">User already exists against this
+        <h2 style="text-align: center; color: red; font-family: cursive" th:if="${isEmailPresent}">User already exists
+            against this
             email</h2>
-        <h2 style="text-align: center; color: green" th:if="${success}">User is successfully registered</h2>
+        <h2 style="text-align: center; color: green; font-family: cursive" th:if="${success}">User is successfully
+            registered</h2>
         <hr>
         <form th:action="@{/users/register}" th:object="${user}" method="post"
               class="form">
@@ -76,21 +79,21 @@
             <div class="form-group">
                 <label for="username">Username</label>
                 <input class="form-control" type="text" th:field="*{username}" id="username"
-                       placeholder="Enter a unique Username" required>
+                       placeholder="Enter a unique username" required>
                 <div class="alert alert-warning" th:if="${#fields.hasErrors('username')}"
                      th:errors="*{username}"></div>
             </div>
             <div class="form-group">
                 <label for="username">Email</label>
                 <input class="form-control" type="text" th:field="*{email}" id="email"
-                       placeholder="Enter a unique Username" required>
+                       placeholder="Enter your email" required>
                 <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}"
                      th:errors="*{email}"></div>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input class="form-control" type="text" th:field="*{password}" id="password"
-                       placeholder="Enter a unique Password" required>
+                       placeholder="Enter the Password" required>
                 <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}"
                      th:errors="*{password}"></div>
             </div>
