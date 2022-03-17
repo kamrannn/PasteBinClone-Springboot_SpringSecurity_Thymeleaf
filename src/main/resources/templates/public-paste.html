@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>User Homepage</title>
+    <title>Public Paste</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -46,46 +46,38 @@
 <body>
 <div class="topnav">
     <a class="active" th:href="@{/users/home}">Home</a>
-    <!--<a th:href="@{/student/{studentId}(studentId=${studentId})}">Booked Classes</a>
-    <a th:href="@{/student/view-all-classes/{studentId}(studentId=${studentId})}">All Classes</a>-->
     <a th:href="@{/logout}" style="float: right">Logout</a>
 </div>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to User Dashboard</h1>
+        <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to Public Paste's Dashboard</h1>
         <hr>
         <a th:href="@{/users/create/paste}"
            class="btn btn-primary">Create new Paste
         </a>
-        <a th:href="@{/paste/public}"
+        <a th:href="@{/users/create/paste}"
            class="btn btn-primary">Public Paste's
         </a>
         <hr>
-        <h3 style="text-align: center; font-family: fantasy;" class="login">! Following are your own paste list !</h3>
+        <h3 style="text-align: center; font-family: fantasy;" class="login">! Following are the public paste's !</h3>
         <br>
         <table border="2" class="table table-bordered table-responsive-md">
             <thead>
             <tr>
-                <th>Paste Id</th>
+                <!--                <th>Paste Id</th>-->
                 <th>Paste Name</th>
                 <th>Description</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="paste : ${pasteList}">
-                <td th:text="${paste.id}"></td>
+                <!--                <td th:text="${paste.id}"></td>-->
                 <td th:text="${paste.name}"></td>
                 <td>
                     <a th:href="@{/paste/{pasteId}/(pasteId= ${paste.id})}"
                        class="btn btn-danger">See more
                     </a>
                 </td>
-                <!--<td>
-                    <a th:href="@{/student/cancel/class/{studentId}/{classId}(studentId=${studentId},classId=${studentClass.classId})}"
-                       class="btn btn-danger">Cancel Class</a>
-                    <a th:href="@{/student/lesson/view/{studentId}/{classId}(studentId=${studentId},classId=${studentClass.classId})}"
-                       class="btn btn-primary">View Lessons</a>
-                </td>-->
             </tr>
             <tr th:if="${pasteList.isEmpty()}">
                 <td style="text-align: center;font-weight: bold">

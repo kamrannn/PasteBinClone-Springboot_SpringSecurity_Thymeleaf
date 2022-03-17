@@ -1,5 +1,6 @@
 package com.app.pastebinclone;
 
+import com.app.pastebinclone.model.GrantType;
 import com.app.pastebinclone.model.Paste;
 import com.app.pastebinclone.model.User;
 import com.app.pastebinclone.repository.UserRepository;
@@ -25,9 +26,9 @@ public class PasteBinCloneApplication {
             Paste paste = new Paste();
             paste.setName("Welcome Java Developer");
             paste.setDescription("A complete description for this paste will come here ");
+            paste.setGrant(GrantType.PUBLIC);
             user.getPasteList().add(paste);
             userRepository.save(user);
-
         };
     }
 

@@ -27,10 +27,6 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    public List<User> list() {
-        return userRepository.findAll();
-    }
-
     public User save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);

@@ -17,4 +17,5 @@ public class Paste {
     @NotBlank(message = "Description should not be blank")
     @Column(length = 65535, columnDefinition = "Text")
     private String description;
+    private GrantType grant;
 }

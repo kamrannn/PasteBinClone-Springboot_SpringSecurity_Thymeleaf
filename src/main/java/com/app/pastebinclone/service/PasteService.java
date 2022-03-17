@@ -1,10 +1,12 @@
 package com.app.pastebinclone.service;
 
+import com.app.pastebinclone.model.GrantType;
 import com.app.pastebinclone.model.Paste;
 import com.app.pastebinclone.repository.PasteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,5 +29,9 @@ public class PasteService {
         } else {
             throw new RuntimeException("Paste doesn't exists against this id");
         }
+    }
+
+    public List<Paste> getPasteByGrantType(GrantType type) {
+        return pasteRepository.findAllByGrant(type);
     }
 }

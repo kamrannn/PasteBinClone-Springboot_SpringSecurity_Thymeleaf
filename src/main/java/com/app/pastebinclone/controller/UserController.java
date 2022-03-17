@@ -85,8 +85,12 @@ public class UserController {
                 user.get().getPasteList().add(paste);
                 userService.save(user.get());
                 model.addAttribute("success", true);
+                model.addAttribute("paste", new Paste());
             }
         }
         return "create-paste";
     }
+
+
+
 }

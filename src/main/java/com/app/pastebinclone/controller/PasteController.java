@@ -1,5 +1,7 @@
 package com.app.pastebinclone.controller;
 
+import com.app.pastebinclone.model.GrantType;
+import com.app.pastebinclone.model.Paste;
 import com.app.pastebinclone.service.PasteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,11 @@ public class PasteController {
     public String getPasteById(@PathVariable(name = "pasteId") Integer pasteId, Model model) {
         model.addAttribute("paste", pasteService.getPasteById(pasteId));
         return "paste-full-information";
+    }
 
+    @GetMapping("/public")
+    public String getPublicPaste(Model model) {
+        model.addAttribute("pasteList", pasteService.getPasteByGrantType(GrantType.PUBLIC));
+        return "public-paste";
     }
 }
