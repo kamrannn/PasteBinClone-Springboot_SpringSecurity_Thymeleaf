@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Class</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    label {
+        font-family: cursive;
+    }
+
+    input{
+        font-family: cursive;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: brown;
+        font-family: cursive;
+    }
+
+    .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
+    }
+</style>
+<body>
+<div class="topnav">
+    <a class="active" th:href="@{/}">Home</a>
+    <a th:href="@{/users/login}" style="float: right">Login</a>
+    <a th:href="@{/users/register}" style="float: right">Register</a>
+</div>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to Signup page</h1>
+        <hr>
+        <h2 style="text-align: center; color: red" th:if="${isUsernamePresent}">User already exists against this
+            username</h2>
+        <h2 style="text-align: center; color: red" th:if="${isEmailPresent}">User already exists against this
+            email</h2>
+        <h2 style="text-align: center; color: green" th:if="${success}">User is successfully registered</h2>
+        <hr>
+        <form th:action="@{/users/register}" th:object="${user}" method="post"
+              class="form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input class="form-control" type="text" th:field="*{name}" id="name"
+                       placeholder="Enter Your Name"
+                       required>
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}"
+                     th:errors="*{name}"></div>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input class="form-control" type="text" th:field="*{username}" id="username"
+                       placeholder="Enter a unique Username" required>
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('username')}"
+                     th:errors="*{username}"></div>
+            </div>
+            <div class="form-group">
+                <label for="username">Email</label>
+                <input class="form-control" type="text" th:field="*{email}" id="email"
+                       placeholder="Enter a unique Username" required>
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}"
+                     th:errors="*{email}"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" type="text" th:field="*{password}" id="password"
+                       placeholder="Enter a unique Password" required>
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}"
+                     th:errors="*{password}"></div>
+            </div>
+            <input type="submit" class="btn btn-success col-4">
+            <a th:href="@{/}" class="btn btn-primary col-4">Login</a>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

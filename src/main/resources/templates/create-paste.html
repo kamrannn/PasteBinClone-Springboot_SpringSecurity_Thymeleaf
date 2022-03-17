@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Class</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    label {
+        font-family: cursive;
+    }
+
+    input {
+        font-family: cursive;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: brown;
+        font-family: cursive;
+    }
+
+    .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
+    }
+</style>
+<body>
+<div class="topnav">
+    <a class="active" th:href="@{/users/home}">Home</a>
+    <a th:href="@{/logout}" style="float: right">Logout</a>
+</div>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to Create Paste Form</h1>
+        <hr>
+        <h2 style="text-align: center; color: green" th:if="${success}">Paste is successfully created</h2>
+        <hr>
+        <form th:action="@{/users/create/paste}" th:object="${paste}" method="post"
+              class="form">
+            <div class="form-group">
+                <label for="name">Paste Name</label>
+                <input class="form-control" type="text" th:field="*{name}" id="name"
+                       required>
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}"
+                     th:errors="*{name}"></div>
+            </div>
+            <div class="form-group">
+                <label for="description">Paste Description</label>
+                <textarea class="form-control" type="text" th:field="*{description}" id="description"
+                          required></textarea>
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('description')}"
+                     th:errors="*{description}"></div>
+            </div>
+            <input type="submit" class="btn btn-success col-4">
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

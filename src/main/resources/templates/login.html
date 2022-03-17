@@ -1,0 +1,77 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    label {
+        font-family: cursive;
+    }
+
+    input{
+        font-family: cursive;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: brown;
+        font-family: cursive;
+    }
+
+    .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
+    }
+</style>
+<body>
+<div class="topnav">
+    <a class="active" th:href="@{/}">Home</a>
+    <a style="float: right" th:href="@{/users/register}">Register</a>
+    <a style="float: right" th:href="@{/users/login}">Login</a>
+</div>
+<div class="jumbotron jumbotron-fluid">
+    <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to the Login page</h1>
+    <div class="container">
+        <br>
+        <p th:if="${loginError}" class="error">Wrong username or password</p>
+        <form th:action="@{/login}" method="POST" th:object="${user}">
+            <label>Username:</label>
+            <input type="text" placeholder="Enter Username" th:field="*{username}"
+                   class="form-control" id="username">
+            <br>
+            <label>Password:</label>
+            <input type="text" placeholder="Enter Password" th:field="*{password}"
+                   class="form-control" id="password">
+            <br>
+            <button type="submit" class="btn btn-info col-2"> Log In</button>
+            <!--<a th:href="@{/register/student/form}" class="btn btn-primary col-2">Student SignUp</a>
+            <a th:href="@{/register/tutor/form}" class="btn btn-primary col-2">Tutor SignUp</a>-->
+        </form>
+    </div>
+</div>
+</body>
+</html>
