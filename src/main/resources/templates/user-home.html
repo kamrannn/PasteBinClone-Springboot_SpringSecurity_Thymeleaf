@@ -47,15 +47,14 @@
         color: white;
     }
 
-    hr{
+    hr {
         color: black;
     }
 </style>
 <body>
 <div class="topnav">
     <a class="active" th:href="@{/users/home}">Home</a>
-    <!--<a th:href="@{/student/{studentId}(studentId=${studentId})}">Booked Classes</a>
-    <a th:href="@{/student/view-all-classes/{studentId}(studentId=${studentId})}">All Classes</a>-->
+    <a th:href="@{/paste/public}">Public Paste</a>
     <a th:href="@{/logout}" style="float: right">Logout</a>
 </div>
 <div class="jumbotron jumbotron-fluid" style="background: center">
@@ -65,9 +64,6 @@
         <a th:href="@{/users/create/paste}"
            class="btn btn-primary">Create new Paste
         </a>
-        <a th:href="@{/paste/public}"
-           class="btn btn-primary">Public Paste's
-        </a>
         <hr>
         <h3 style="text-align: center; font-family: fantasy;" class="login">! Following are your own paste list !</h3>
         <br>
@@ -76,6 +72,7 @@
             <tr>
                 <th>Paste Id</th>
                 <th>Paste Name</th>
+                <th>Grant Type</th>
                 <th>Description</th>
             </tr>
             </thead>
@@ -83,6 +80,7 @@
             <tr th:each="paste : ${pasteList}">
                 <td th:text="${paste.id}"></td>
                 <td th:text="${paste.name}"></td>
+                <td th:text="${paste.grant}"></td>
                 <td>
                     <a th:href="@{/paste/{pasteId}/(pasteId= ${paste.id})}"
                        class="btn btn-danger">See more
