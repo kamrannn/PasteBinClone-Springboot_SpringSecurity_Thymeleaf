@@ -12,13 +12,17 @@
     body {
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
+        background-image: url("https://wallpapercave.com/wp/wp6751611.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
     }
 
     label {
         font-family: cursive;
     }
 
-    input{
+    input {
         font-family: cursive;
     }
 
@@ -53,11 +57,12 @@
     <a style="float: right" th:href="@{/users/register}">Register</a>
     <a style="float: right" th:href="@{/users/login}">Login</a>
 </div>
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid" style="background: center">
     <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to the Login page</h1>
     <div class="container">
         <br>
-        <p th:if="${loginError}" class="error" style="text-align: center; color: red; font-family: cursive">Wrong username or password</p>
+        <p th:if="${loginError}" class="error" style="text-align: center; color: red; font-family: cursive">Wrong
+            username or password</p>
         <form th:action="@{/login}" method="POST" th:object="${user}">
             <label>Username:</label>
             <input type="text" placeholder="Enter Username" th:field="*{username}"
@@ -68,8 +73,7 @@
                    class="form-control" id="password">
             <br>
             <button type="submit" class="btn btn-info col-2"> Log In</button>
-            <!--<a th:href="@{/register/student/form}" class="btn btn-primary col-2">Student SignUp</a>
-            <a th:href="@{/register/tutor/form}" class="btn btn-primary col-2">Tutor SignUp</a>-->
+            <a th:href="@{/users/register}" class="btn btn-primary col-2">SignUp</a>
         </form>
     </div>
 </div>
