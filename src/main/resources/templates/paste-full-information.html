@@ -24,15 +24,12 @@
         font-family: cursive;
     }
 
-    label {
-        font-family: cursive;
-    }
-
-    input {
+    label, input {
         font-family: cursive;
     }
 
     textarea {
+        font-family: cursive;
         min-height: 300px;
     }
 
@@ -57,7 +54,9 @@
 </style>
 <body>
 <div class="topnav">
-    <a class="active" th:href="@{/users/home}">Home</a>
+    <a th:href="@{/users/home}">Home</a>
+    <a th:href="@{/paste/public}">Public Paste</a>
+    <a th:href="@{/users/create/paste}">Create New Paste</a>
     <a th:href="@{/logout}" style="float: right">Logout</a>
 </div>
 <div class="jumbotron jumbotron-fluid" style="background: center">
