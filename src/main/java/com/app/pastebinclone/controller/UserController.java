@@ -9,10 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -77,6 +74,23 @@ public class UserController {
 
     @PostMapping("/create/paste")
     public String createPaste(@ModelAttribute Paste paste, BindingResult result, Model model) {
+        if (!result.hasErrors()) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+            Optional<User> user = userService.getUserByUsername(username);
+            if (user.isPresent()) {
+                user.get().getPasteList().add(paste);
+                userService.save(user.get());
+                model.addAttribute("success", true);
+                model.addAttribute("paste", new Paste());
+            }
+        }
+        return "create-paste";
+    }
+
+
+    @PostMapping("/create/paste/test")
+    public String testCreatePaste(@RequestParam(name = "listOfEmail") String emails, @ModelAttribute Paste paste, BindingResult result, Model model) {
         if (!result.hasErrors()) {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String username = authentication.getName();

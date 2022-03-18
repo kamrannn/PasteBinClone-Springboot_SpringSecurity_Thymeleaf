@@ -73,6 +73,7 @@
                 <th>Paste Id</th>
                 <th>Paste Name</th>
                 <th>Grant Type</th>
+                <th>Authorization</th>
                 <th>Description</th>
             </tr>
             </thead>
@@ -81,6 +82,11 @@
                 <td th:text="${paste.id}"></td>
                 <td th:text="${paste.name}"></td>
                 <td th:text="${paste.grant}"></td>
+                <!--<td>
+                    <a th:href="@{/paste/{pasteId}/(pasteId= ${paste.id})}"
+                       class="btn btn-danger">Give Access
+                    </a>
+                </td>-->
                 <td>
                     <a th:href="@{/paste/{pasteId}/(pasteId= ${paste.id})}"
                        class="btn btn-danger">See more
