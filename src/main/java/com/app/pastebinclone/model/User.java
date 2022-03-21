@@ -33,6 +33,14 @@ public class User {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Paste> pasteList = new ArrayList<>();
 
+    public User(Integer id, String name, String email, String username, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
+
     public User(String name, String email, String username, String password) {
         this.name = name;
         this.email = email;

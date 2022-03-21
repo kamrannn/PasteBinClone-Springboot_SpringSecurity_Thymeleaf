@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface PasteRepository extends JpaRepository<Paste, Integer> {
-    List<Paste> findAllByGrant(GrantType grantType);
+    List<Paste> findAllByAuthorizationType(GrantType grantType);
 }

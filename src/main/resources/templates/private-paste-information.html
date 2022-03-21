@@ -62,15 +62,18 @@
 </div>
 <div class="jumbotron jumbotron-fluid" style="background: center">
     <div class="container">
-        <h1 style="text-align: center; font-family: fantasy;" class="login">Complete details of the selected Private Paste</h1>
+        <h1 style="text-align: center; font-family: fantasy;font-size: 40px;" class="login">Complete details of the selected Private Paste</h1>
         <hr>
         <br>
         <form>
+            <label>Private Paste ID:</label>
+            <input type="text" th:field="*{paste.id}" class="form-control" disabled>
+            <br>
             <label>Private Paste Name:</label>
-            <input type="text" th:field="*{paste.getPrivatePasteName()}" class="form-control" disabled>
+            <input type="text" th:field="*{paste.privatePasteName}" class="form-control" disabled>
             <br>
             <label>Private Paste Description:</label>
-            <textarea type="text" th:field="*{paste.getPrivatePasteDescription()}" class="form-control" disabled>
+            <textarea type="text" th:field="*{paste.privatePasteDescription}" class="form-control" disabled>
             </textarea>
         </form>
     </div>

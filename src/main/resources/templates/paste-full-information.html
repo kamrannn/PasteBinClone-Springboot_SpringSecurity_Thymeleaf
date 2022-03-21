@@ -62,10 +62,13 @@
 </div>
 <div class="jumbotron jumbotron-fluid" style="background: center">
     <div class="container">
-        <h1 style="text-align: center; font-family: fantasy;" class="login">Complete details of the selected Paste</h1>
+        <h1 style="text-align: center; font-family: fantasy;font-size: 40px;" class="login">Complete details of the selected Paste</h1>
         <hr>
         <br>
         <form>
+            <label>Paste ID:</label>
+            <input type="text" th:field="*{paste.id}" class="form-control" disabled>
+            <br>
             <label>Paste Name:</label>
             <input type="text" th:field="*{paste.name}" class="form-control" disabled>
             <br>

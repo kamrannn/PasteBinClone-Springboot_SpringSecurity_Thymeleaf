@@ -73,12 +73,12 @@
 </div>
 <div class="jumbotron jumbotron-fluid" style="background: center">
     <div class="container">
-        <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to Create Paste Form</h1>
+        <h1 style="text-align: center; font-family: fantasy;font-size: 40px;" class="login">Private Paste Access Form</h1>
         <hr>
         <h2 style="text-align: center; color: darkgreen; font-family: cursive" th:if="${success}">Paste is successfully
             given access to the submitted email</h2>
         <h2 style="text-align: center; color: red; font-family: cursive" th:if="${userNotFound}">There is no user
-            against this Id</h2>
+            against this email</h2>
         <hr>
         <form th:action="@{/paste/access/{pasteId}(pasteId= ${pasteId})}" method="post"
               class="form">

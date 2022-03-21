@@ -32,6 +32,6 @@ public class PasteService {
     }
 
     public List<Paste> getPasteByGrantType(GrantType type) {
-        return pasteRepository.findAllByGrant(type);
+        return pasteRepository.findAllByAuthorizationType(type);
     }
 }

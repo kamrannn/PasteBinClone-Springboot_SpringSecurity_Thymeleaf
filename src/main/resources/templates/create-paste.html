@@ -73,8 +73,8 @@
 </div>
 <div class="jumbotron jumbotron-fluid" style="background: center">
     <div class="container">
-        <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to Create Paste Form</h1>
-        <hr>
+        <h1 style="text-align: center; font-family: fantasy;font-size: 40px;" class="login">Create Paste Form</h1>
+        <hr th:if="${success}">
         <h2 style="text-align: center; color: darkgreen; font-family: cursive" th:if="${success}">Paste is successfully
             created</h2>
         <hr>
@@ -95,13 +95,13 @@
                      th:errors="*{description}"></div>
             </div>
             <div class="form-group">
-                <label for="grant">Grant Type<span>*</span></label>
-                <select class="form-control" id="grant" th:field="*{grant}">
+                <label for="authorizationType">Grant Type<span>*</span></label>
+                <select class="form-control" id="authorizationType" th:field="*{authorizationType}">
                     <option th:value="PUBLIC" th:text="PUBLIC"></option>
                     <option th:value="PRIVATE" th:text="PRIVATE"></option>
                 </select>
-                <div class="alert alert-warning" th:if="${#fields.hasErrors('grant')}"
-                     th:errors="*{grant}"></div>
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('authorizationType')}"
+                     th:errors="*{authorizationType}"></div>
             </div>
             <input type="submit" class="btn btn-success col-4">
         </form>

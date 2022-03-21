@@ -1,7 +1,9 @@
 package com.app.pastebinclone.controller;
 
+import com.app.pastebinclone.model.GrantType;
 import com.app.pastebinclone.model.Paste;
 import com.app.pastebinclone.model.User;
+import com.app.pastebinclone.service.PasteService;
 import com.app.pastebinclone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,24 +20,14 @@ import java.util.Optional;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
+    private final PasteService pasteService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PasteService pasteService) {
         this.userService = userService;
+        this.pasteService = pasteService;
     }
 
-    @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("user", new User());
-        return "login";
-    }
-
-    @GetMapping("/login-error")
-    public String loginError(Model model) {
-        model.addAttribute("loginError", true);
-        model.addAttribute("user", new User());
-        return "login";
-    }
 
     @GetMapping("/register")
     public String register(Model model) {
@@ -80,13 +72,16 @@ public class UserController {
             String username = authentication.getName();
             Optional<User> user = userService.getUserByUsername(username);
             if (user.isPresent()) {
-                user.get().getPasteList().add(paste);
+                Paste savedPaste = pasteService.save(paste);
+                user.get().getPasteList().add(savedPaste);
                 userService.save(user.get());
                 model.addAttribute("success", true);
                 model.addAttribute("paste", new Paste());
+                if (savedPaste.getAuthorizationType().equals(GrantType.PRIVATE)) {
+                    return "redirect:/paste/access/" + savedPaste.getId();
+                }
             }
         }
         return "create-paste";
     }
-
 }

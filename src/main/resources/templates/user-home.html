@@ -60,7 +60,8 @@
 </div>
 <div class="jumbotron jumbotron-fluid" style="background: center">
     <div class="container">
-        <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to User Dashboard</h1>
+        <h1 style="text-align: center; font-family: fantasy;font-size: 40px;" class="login">Welcome to User
+            Dashboard</h1>
         <hr>
         <a th:href="@{/users/create/paste}"
            class="btn btn-primary">Create new Paste
@@ -82,9 +83,9 @@
             <tr th:each="paste : ${pasteList}">
                 <td th:text="${paste.id}"></td>
                 <td th:text="${paste.name}"></td>
-                <td th:text="${paste.grant}"></td>
+                <td th:text="${paste.authorizationType}"></td>
                 <td>
-                    <a th:if="${paste.grant.name() == 'PRIVATE'}"
+                    <a th:if="${paste.authorizationType.name() == 'PRIVATE'}"
                        th:href="@{/paste/access/{pasteId}(pasteId= ${paste.id})}"
                        class="btn btn-danger">Give Access
                     </a>

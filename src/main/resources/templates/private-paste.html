@@ -57,20 +57,22 @@
 </div>
 <div class="jumbotron jumbotron-fluid" style="background: center">
     <div class="container">
-        <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to Private Paste's Dashboard</h1>
+        <h1 style="text-align: center; font-family: fantasy;font-size: 40px;" class="login">Welcome to Private Paste's Dashboard</h1>
         <hr>
-        <h3 style="text-align: center; font-family: fantasy;" class="login">! Following are the private paste's created from others !</h3>
+        <h3 style="text-align: center; font-family: fantasy;" class="login">! Following are the private paste's created
+            from others !</h3>
         <br>
         <table border="2" class="table table-bordered table-responsive-md">
             <thead>
             <tr>
-                <!--                <th>Paste Id</th>-->
+                <th>Paste Id</th>
                 <th>Paste Name</th>
                 <th>Description</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="paste : ${pasteList}">
+                <td th:text="${paste.id}"></td>
                 <td th:text="${paste.getPrivatePasteName()}"></td>
                 <td>
                     <a th:href="@{/privatePaste/{pasteId}(pasteId= ${paste.id})}"

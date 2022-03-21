@@ -57,21 +57,21 @@
 </div>
 <div class="jumbotron jumbotron-fluid" style="background: center">
     <div class="container">
-        <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to Public Paste's Dashboard</h1>
+        <h1 style="text-align: center; font-family: fantasy;font-size: 40px;" class="login">Welcome to Public Paste's Dashboard</h1>
         <hr>
         <h3 style="text-align: center; font-family: fantasy;" class="login">! Following are the public paste's !</h3>
         <br>
         <table border="2" class="table table-bordered table-responsive-md">
             <thead>
             <tr>
-                <!--                <th>Paste Id</th>-->
+                <th>Paste Id</th>
                 <th>Paste Name</th>
                 <th>Description</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="paste : ${pasteList}">
-                <!--                <td th:text="${paste.id}"></td>-->
+                <td th:text="${paste.id}"></td>
                 <td th:text="${paste.name}"></td>
                 <td>
                     <a th:href="@{/paste/{pasteId}/(pasteId= ${paste.id})}"

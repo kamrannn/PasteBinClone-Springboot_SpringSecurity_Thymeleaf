@@ -20,13 +20,14 @@ public class PasteBinCloneApplication {
     @Bean
     CommandLineRunner run(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         return args -> {
-            User user = new User("Kamran Abbasi", "kamran", "kamran", "kamran");
+            User user = new User(1, "Kamran Abbasi", "kamran", "kamran", "kamran");
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
             Paste paste = new Paste();
+            paste.setId(1);
             paste.setName("Welcome Java Developer");
             paste.setDescription("A complete description for this paste will come here ");
-            paste.setGrant(GrantType.PUBLIC);
+            paste.setAuthorizationType(GrantType.PUBLIC);
             user.getPasteList().add(paste);
             userRepository.save(user);
         };
