@@ -67,6 +67,7 @@
 <div class="topnav">
     <a th:href="@{/users/home}">Home</a>
     <a th:href="@{/paste/public}">Public Paste</a>
+    <a th:href="@{/privatePaste/list}">Other's Private Paste</a>
     <a class="active" th:href="@{/users/create/paste}">Create New Paste</a>
     <a th:href="@{/logout}" style="float: right">Logout</a>
 </div>
@@ -95,56 +96,16 @@
             </div>
             <div class="form-group">
                 <label for="grant">Grant Type<span>*</span></label>
-                <select class="form-control" id="grant" th:field="*{grant}" onchange="showDiv('hidden_div', this)">
+                <select class="form-control" id="grant" th:field="*{grant}">
                     <option th:value="PUBLIC" th:text="PUBLIC"></option>
                     <option th:value="PRIVATE" th:text="PRIVATE"></option>
                 </select>
                 <div class="alert alert-warning" th:if="${#fields.hasErrors('grant')}"
                      th:errors="*{grant}"></div>
             </div>
-            <!--<div class="form-group" id="hidden_div">
-                <label for="grant">Users email<span>*</span></label>
-                <input type="text" id="email" name="listOfEmail" value=""/><br>
-                <button type="button" name="button" onclick="insert()">
-                    Add email
-                </button>
-            </div>-->
             <input type="submit" class="btn btn-success col-4">
         </form>
     </div>
 </div>
-<!--<script>
-    function showDiv(divId, element) {
-        document.getElementById(divId).style.display = element.value == "PRIVATE" ? 'block' : 'none';
-    }
-
-    var titles = [];
-    var titleInput = document.getElementById("email");
-
-    var i = 0;
-
-    function insert() {
-        titles.push(titleInput.value);
-        console.log(titleInput.value);
-        console.log(titles[i]);
-        i++;
-    }
-
-    var k = "The respective values are :";
-
-    function Geeks() {
-
-
-        var input = document.getElementsByName('array[]');
-
-        for (var i = 0; i < input.length; i++) {
-            var a = input[i];
-            k = k + "array[" + i + "].value= "
-                + a.value + " ";
-        }
-        document.getElementById("par").innerHTML = k;
-    }
-</script>-->
-
 </body>
 </html>

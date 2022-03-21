@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Tutor Homepage</title>
+    <title>Create Class</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -18,19 +18,26 @@
         background-size: 100% 100%;
     }
 
+    label {
+        font-family: cursive;
+    }
+
+    option {
+        font-family: cursive;
+    }
+
+    textarea, select {
+        font-family: cursive;
+    }
+
+    input {
+        font-family: cursive;
+    }
+
     .topnav {
         overflow: hidden;
         background-color: brown;
         font-family: cursive;
-    }
-
-    label, input {
-        font-family: cursive;
-    }
-
-    textarea {
-        font-family: cursive;
-        min-height: 300px;
     }
 
     .topnav a {
@@ -51,27 +58,36 @@
         background-color: #04AA6D;
         color: white;
     }
+
+    #hidden_div {
+        display: none;
+    }
 </style>
 <body>
 <div class="topnav">
     <a th:href="@{/users/home}">Home</a>
     <a th:href="@{/paste/public}">Public Paste</a>
     <a th:href="@{/privatePaste/list}">Other's Private Paste</a>
-    <a th:href="@{/users/create/paste}">Create New Paste</a>
+    <a class="active" th:href="@{/users/create/paste}">Create New Paste</a>
     <a th:href="@{/logout}" style="float: right">Logout</a>
 </div>
 <div class="jumbotron jumbotron-fluid" style="background: center">
     <div class="container">
-        <h1 style="text-align: center; font-family: fantasy;" class="login">Complete details of the selected Paste</h1>
+        <h1 style="text-align: center; font-family: fantasy;" class="login">Welcome to Create Paste Form</h1>
         <hr>
-        <br>
-        <form>
-            <label>Paste Name:</label>
-            <input type="text" th:field="*{paste.name}" class="form-control" disabled>
-            <br>
-            <label>Paste Description:</label>
-            <textarea type="text" th:field="*{paste.description}" class="form-control" disabled>
-            </textarea>
+        <h2 style="text-align: center; color: darkgreen; font-family: cursive" th:if="${success}">Paste is successfully
+            given access to the submitted email</h2>
+        <h2 style="text-align: center; color: red; font-family: cursive" th:if="${userNotFound}">There is no user
+            against this Id</h2>
+        <hr>
+        <form th:action="@{/paste/access/{pasteId}(pasteId= ${pasteId})}" method="post"
+              class="form">
+            <div class="form-group">
+                <label for="email">Enter User's email</label>
+                <input class="form-control" type="text" id="email" name="email"
+                       required>
+            </div>
+            <input type="submit" class="btn btn-success col-4">
         </form>
     </div>
 </div>

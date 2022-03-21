@@ -89,21 +89,6 @@ public class UserController {
     }
 
 
-    @PostMapping("/create/paste/test")
-    public String testCreatePaste(@RequestParam(name = "listOfEmail") String emails, @ModelAttribute Paste paste, BindingResult result, Model model) {
-        if (!result.hasErrors()) {
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String username = authentication.getName();
-            Optional<User> user = userService.getUserByUsername(username);
-            if (user.isPresent()) {
-                user.get().getPasteList().add(paste);
-                userService.save(user.get());
-                model.addAttribute("success", true);
-                model.addAttribute("paste", new Paste());
-            }
-        }
-        return "create-paste";
-    }
 
 
 

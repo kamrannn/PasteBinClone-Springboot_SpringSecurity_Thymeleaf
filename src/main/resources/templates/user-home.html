@@ -55,6 +55,7 @@
 <div class="topnav">
     <a class="active" th:href="@{/users/home}">Home</a>
     <a th:href="@{/paste/public}">Public Paste</a>
+    <a th:href="@{/privatePaste/list}">Other's Private Paste</a>
     <a th:href="@{/logout}" style="float: right">Logout</a>
 </div>
 <div class="jumbotron jumbotron-fluid" style="background: center">
@@ -82,22 +83,17 @@
                 <td th:text="${paste.id}"></td>
                 <td th:text="${paste.name}"></td>
                 <td th:text="${paste.grant}"></td>
-                <!--<td>
-                    <a th:href="@{/paste/{pasteId}/(pasteId= ${paste.id})}"
+                <td>
+                    <a th:if="${paste.grant.name() == 'PRIVATE'}"
+                       th:href="@{/paste/access/{pasteId}(pasteId= ${paste.id})}"
                        class="btn btn-danger">Give Access
                     </a>
-                </td>-->
+                </td>
                 <td>
-                    <a th:href="@{/paste/{pasteId}/(pasteId= ${paste.id})}"
+                    <a th:href="@{/paste/{pasteId}(pasteId= ${paste.id})}"
                        class="btn btn-danger">See more
                     </a>
                 </td>
-                <!--<td>
-                    <a th:href="@{/student/cancel/class/{studentId}/{classId}(studentId=${studentId},classId=${studentClass.classId})}"
-                       class="btn btn-danger">Cancel Class</a>
-                    <a th:href="@{/student/lesson/view/{studentId}/{classId}(studentId=${studentId},classId=${studentClass.classId})}"
-                       class="btn btn-primary">View Lessons</a>
-                </td>-->
             </tr>
             <tr th:if="${pasteList.isEmpty()}">
                 <td style="text-align: center;font-weight: bold">
