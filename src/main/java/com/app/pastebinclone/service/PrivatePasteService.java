@@ -2,6 +2,7 @@ package com.app.pastebinclone.service;
 
 import com.app.pastebinclone.model.Paste;
 import com.app.pastebinclone.model.PrivatePaste;
+import com.app.pastebinclone.model.User;
 import com.app.pastebinclone.repository.PrivatePasteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,14 +28,17 @@ public class PrivatePasteService {
         List<PrivatePaste> specificUsersPaste = new ArrayList<>();
         for (PrivatePaste paste : privatePasteList
         ) {
-            if (paste.getUserList().equals(userEmail)) {
-                specificUsersPaste.add(paste);
+            for (User user : paste.getUserList()
+            ) {
+                if (user.getEmail().equals(userEmail)) {
+                    specificUsersPaste.add(paste);
+                }
             }
         }
         return specificUsersPaste;
     }
 
-    public PrivatePaste getPasteById(Integer privatePasteId){
+    public PrivatePaste getPasteById(Integer privatePasteId) {
         return privatePasteRepository.getById(privatePasteId);
     }
 }

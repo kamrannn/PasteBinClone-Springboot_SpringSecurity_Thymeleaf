@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -43,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute User user, BindingResult result, Model model) {
+    public String register(@Valid @ModelAttribute User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
         } else if (userService.getUserByUsername(user.getUsername()).isPresent()) {
             model.addAttribute("isUsernamePresent", true);
@@ -87,9 +88,5 @@ public class UserController {
         }
         return "create-paste";
     }
-
-
-
-
 
 }

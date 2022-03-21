@@ -30,7 +30,7 @@ public class User {
     @NotBlank(message = "Password should not be blank")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Paste> pasteList = new ArrayList<>();
 
     public User(String name, String email, String username, String password) {

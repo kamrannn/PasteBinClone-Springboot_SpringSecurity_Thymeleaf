@@ -52,9 +52,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/users/login");
         http.csrf().disable();
-        http.sessionManagement()
+/*        http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                .invalidSessionUrl("/users/login");
+                .invalidSessionUrl("/users/login");*/
     }
 
     @Override
