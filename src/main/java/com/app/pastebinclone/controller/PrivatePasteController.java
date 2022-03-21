@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,8 +28,12 @@ public class PrivatePasteController {
         this.userService = userService;
     }
 
+    /**
+     * This controller is getting used to view all the private paste that a user have access
+     */
     @GetMapping("/list")
     public String usersPrivatePasteAccess(Model model) {
+        //This line will give us a username, it's a spring security logged in user authentication.
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         Optional<User> user = userService.getUserByUsername(username);
@@ -44,6 +47,9 @@ public class PrivatePasteController {
         return "private-paste";
     }
 
+    /**
+     * This controller is getting used to see more details of a private paste
+     */
     @GetMapping("/{pasteId}")
     public String getPasteById(@PathVariable(name = "pasteId") Integer pasteId, Model model) {
         model.addAttribute("paste", privatePasteService.getPasteById(pasteId));

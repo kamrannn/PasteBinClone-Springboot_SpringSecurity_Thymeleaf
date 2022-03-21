@@ -29,24 +29,37 @@ public class PasteController {
         this.privatePasteService = privatePasteService;
     }
 
+    /**
+     * This controller is getting used to access a specific paste by its id
+     */
     @GetMapping("/{pasteId}")
     public String getPasteById(@PathVariable(name = "pasteId") Integer pasteId, Model model) {
         model.addAttribute("paste", pasteService.getPasteById(pasteId));
         return "paste-full-information";
     }
 
+    /**
+     * This controller is getting used to access all the public paste
+     * All those paste who have grant type public
+     */
     @GetMapping("/public")
     public String getPublicPaste(Model model) {
         model.addAttribute("pasteList", pasteService.getPasteByGrantType(GrantType.PUBLIC));
         return "public-paste";
     }
 
+    /**
+     * This controller is getting used to view the Give access to users page
+     */
     @GetMapping("/access/{pasteId}")
     public String pasteAccess(Model model, @PathVariable(name = "pasteId") Integer pasteId) {
         model.addAttribute("pasteId", pasteId);
         return "paste-access-page";
     }
 
+    /**
+     * This controller is getting used to submit the users email to give access to the private paste
+     */
     @PostMapping("/access/{pasteId}")
     public String pasteAccessSubmission(@RequestParam(name = "email") String userEmail, @PathVariable(name = "pasteId") Integer pasteId, Model model) {
 

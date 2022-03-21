@@ -11,7 +11,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -28,13 +31,18 @@ public class UserController {
         this.pasteService = pasteService;
     }
 
-
+    /**
+     * This controller is getting used to view the registration page
+     */
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
 
+    /**
+     * This controller is getting used to register the user in the database
+     */
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -54,6 +62,9 @@ public class UserController {
         }
     }
 
+    /**
+     * This controller is getting used to view the homepage
+     */
     @GetMapping("/home")
     public String userHome(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -66,12 +77,18 @@ public class UserController {
         return "user-home";
     }
 
+    /**
+     * This controller is getting used to see the create paste form
+     */
     @GetMapping("/create/paste")
     public String createPaste(Model model) {
         model.addAttribute("paste", new Paste());
         return "create-paste";
     }
 
+    /**
+     * This controller is getting used to create the paste and save it in the database
+     */
     @PostMapping("/create/paste")
     public String createPaste(@ModelAttribute Paste paste, BindingResult result, Model model) {
         if (!result.hasErrors()) {

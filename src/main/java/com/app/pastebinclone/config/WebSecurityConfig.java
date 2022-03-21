@@ -2,8 +2,6 @@ package com.app.pastebinclone.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,7 +10,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -25,16 +22,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsService userDetailsService;
 
-
+    /**
+     * This method is getting used by the Spring security to decrypt the passwords that are stored in encrypted
+     * form in our database.
+     * The passwords are getting encrypted by this same method while registering a user.
+     */
     @Bean
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * This method is getting used by the Spring security to authenticate the user
+     */
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
     }
+
+    /**
+     * This method is getting used by the Spring security to authorize the user
+     */
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -51,12 +59,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login");
 
         http.csrf().disable();
-
-/*        http.sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                .invalidSessionUrl("/users/login");*/
     }
 
+    /**
+     * This method is getting used by the Spring security to ignore applying security to the following paths
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
