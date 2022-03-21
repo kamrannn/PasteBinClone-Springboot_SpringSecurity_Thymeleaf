@@ -57,6 +57,9 @@ public class UserController {
     @GetMapping("/home")
     public String userHome(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!authentication.isAuthenticated()) {
+            return "redirect:/login";
+        }
         String username = authentication.getName();
         Optional<User> user = userService.getUserByUsername(username);
         model.addAttribute("pasteList", user.get().getPasteList());
