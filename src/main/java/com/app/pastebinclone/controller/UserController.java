@@ -38,16 +38,20 @@ public class UserController {
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            return "register";
         } else if (userService.getUserByUsername(user.getUsername()).isPresent()) {
             model.addAttribute("isUsernamePresent", true);
+            return "register";
+
         } else if (userService.getUserByEmail(user.getEmail()).isPresent()) {
             model.addAttribute("isEmailPresent", true);
+            return "register";
         } else {
             userService.save(user);
             model.addAttribute("success", true);
             model.addAttribute("user", new User());//To reset the form
+            return "register";
         }
-        return "register";
     }
 
     @GetMapping("/home")

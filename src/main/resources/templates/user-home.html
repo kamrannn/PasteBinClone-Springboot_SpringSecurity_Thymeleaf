@@ -87,12 +87,12 @@
                 <td>
                     <a th:if="${paste.authorizationType.name() == 'PRIVATE'}"
                        th:href="@{/paste/access/{pasteId}(pasteId= ${paste.id})}"
-                       class="btn btn-danger">Give Access
+                       class="btn btn-success">Give Access
                     </a>
                 </td>
                 <td>
                     <a th:href="@{/paste/{pasteId}(pasteId= ${paste.id})}"
-                       class="btn btn-danger">See more
+                       class="btn btn-info">See more
                     </a>
                 </td>
             </tr>

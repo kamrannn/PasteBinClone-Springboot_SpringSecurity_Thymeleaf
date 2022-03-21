@@ -17,7 +17,7 @@ public class PasteBinCloneApplication {
         SpringApplication.run(PasteBinCloneApplication.class, args);
     }
 
-    @Bean
+/*    @Bean
     CommandLineRunner run(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         return args -> {
             User user = new User(1, "Kamran Abbasi", "kamran", "kamran", "kamran");
@@ -31,6 +31,6 @@ public class PasteBinCloneApplication {
             user.getPasteList().add(paste);
             userRepository.save(user);
         };
-    }
+    }*/
 
 }
